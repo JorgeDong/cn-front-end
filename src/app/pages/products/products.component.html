@@ -1,0 +1,73 @@
+
+            <div class="breadcrumb-area pt-205 pb-210 bg-img" style="background-image: url(assets/img/bg/breadcrumb.jpg)">
+                <div class="container">
+                    <div class="breadcrumb-content">
+                        <h2>shop</h2>
+                        <ul>
+                            <li><a href="#">home</a></li>
+                            <li> shop </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="shop-page-wrapper hidden-items padding-filter">
+                <div class="container-fluid">
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="coupon-accordion">
+                                <!-- ACCORDION START -->
+                                <h3>Para poder agregar al carrito debes iniciar sesión. <span id="showlogin" routerLink="/signin" >Click aqui para iniciar sesión</span></h3>						
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="shop-filters-right">
+
+                        <div class="shop-product-content tab-content">
+
+
+                            <div id="grid-5-col1" class="tab-pane fade active show" >
+                                <div class="row custom-row" >
+                                    <div class="custom-col-5 custom-col-style" *ngFor="let item of data">
+                                        <div class="single-product mb-35">
+                                            <div class="product-img">
+                                                
+                                                <a href="#"><img src="{{item.imgUrl.S}}" width="302" height="365" alt=""></a>
+                                                <div class="product-action">
+                                                    <a *ngIf="isAuthenticated" title="Wishlist" class="animate-left" href="#"><i class="ion-bag" ></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <div class="product-title-price">
+                                                    <div class="product-title">
+                                                        <h4>{{item.nombre.S}}</h4>
+                                                    </div>
+                                                    <div class="product-price">
+                                                        <span>$ {{item.precio}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="product-cart-categori">
+                                                    <div class="product-cart">
+                                                        <span>{{item.descripcion.S}}</span>
+                                                    </div>
+                                                    <div class="product-categori">
+                                                        <a *ngIf="isAuthenticated" href="#"><i class="ion-bag"></i> Añadir al carrito</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                   </div>
+
+
+                                   
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
