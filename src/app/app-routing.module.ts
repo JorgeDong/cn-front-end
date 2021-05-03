@@ -9,15 +9,17 @@ import { ProductsComponent } from './pages/products/products.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { ProductsAuthComponent } from './pages/products-auth/products-auth.component';
+import { PedidosComponent } from './pages/pedidos/pedidos.component';
 
 const routes: Routes = [
   { path: '', component: ProductsComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'products', component: ProductsAuthComponent },
+  { path: 'pedidos', component: PedidosComponent },
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
-  { path: 'compare', canActivate: [AuthGuard], component: CompareComponent },
+  // { path: 'compare', canActivate: [AuthGuard], component: CompareComponent },
   
 ];
 

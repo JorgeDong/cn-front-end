@@ -59,6 +59,10 @@ export class AuthService {
 
     });
 
+    //Registrar usuario en la API
+    
+
+
     return;
   }
   confirmUser(username: string, code: string) {

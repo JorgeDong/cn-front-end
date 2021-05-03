@@ -1,22 +1,46 @@
 import { AfterViewInit, Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { StripeService } from '../../services/stripe.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'app/user/auth.service';
+import { OrderService } from 'app/services/order.service';
+
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css'],
-  providers: [StripeService]
+  providers: [StripeService,OrderService]
 })
 export class CheckoutComponent implements OnInit,AfterViewInit {
 
   @ViewChild('cardInfo') cardInfo: ElementRef;
   cardError: string;
   card: any;
+  totalesArr;
+  totalCuenta;
+  username;
+  productos;
 
   constructor(
     private ngZone: NgZone,
-    private stripeService: StripeService
-  ){}
+    private stripeService: StripeService,
+    private router: Router,
+    private authService:AuthService,
+    private orderService: OrderService
+  ){
+
+    let obj = JSON.parse(localStorage.getItem('totales'));
+    if(obj){
+      this.totalesArr = obj;
+    }
+    let objTotal = JSON.parse(localStorage.getItem('totales_cuenta'));
+    if(objTotal){
+      this.totalCuenta = objTotal;
+    }
+
+    this.username = this.authService.getAuthenticatedUser().getUsername();
+
+  }
 
   ngAfterViewInit(){
     this.card = elements.create('card');
@@ -42,20 +66,48 @@ export class CheckoutComponent implements OnInit,AfterViewInit {
   async onClick(){
     const { token, error } = await stripe.createToken(this.card);
     if(token){
-      const response = await this.stripeService.charge(100,token.id);
+      const response = await this.stripeService.charge(this.totalCuenta,token.id);
       console.log(response);
     }else{
       this.ngZone.run(()=>{
         this.cardError = error.message;
       });
     }
+
+    // Guardar el pedido en al 
+    let objTest = {
+      username: this.username,
+      total: this.totalCuenta,
+      productos: this.totalesArr
+    };
+
+    this.orderService.createOrder(objTest).then(data=>{
+      console.log(data);
+    });
+
+    //Vaciar local Storage
+    this.totalesArr.forEach(element => {
+      localStorage.removeItem(element.idProducto);
+    });
+
+    localStorage.removeItem('totales');
+    localStorage.removeItem('totales_cuenta');
+    
+    //Redirigir
+    this.router.navigate(['/']);
   }
 
+  ngOnDestroy() {
+    this.card.removeEventListener('change', this.onChange.bind(this));
+    this.card.destroy();
+}
 
 
   ngOnInit(){
-
   }
+
+
+
 
   
   // elements: Elements;

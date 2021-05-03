@@ -38,7 +38,7 @@
                                                 
                                                 <a href="#"><img src="{{item.imgUrl.S}}" width="302" height="365" alt=""></a>
                                                 <div class="product-action">
-                                                    <a *ngIf="isAuthenticated" title="Wishlist" class="animate-left" href="#"><i class="ion-bag" ></i></a>
+                                                    <!-- <a *ngIf="isAuthenticated" title="Wishlist" class="animate-left" href="#"><i class="ion-bag" ></i></a> -->
                                                 </div>
                                             </div>
                                             <div class="product-content">
@@ -55,7 +55,7 @@
                                                         <span>{{item.descripcion.S}}</span>
                                                     </div>
                                                     <div class="product-categori">
-                                                        <a *ngIf="isAuthenticated" href="#"><i class="ion-bag"></i> Añadir al carrito</a>
+                                                        <a routerLink="/signin" >Click aqui para iniciar sesión</a>                                                        
                                                     </div>
                                                 </div>
                                             </div>

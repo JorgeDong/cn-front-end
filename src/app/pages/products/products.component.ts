@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class ProductsComponent implements OnInit {
   isAuthenticated = false;
   data:any;
+  cantidadProductos = 1;
 
   constructor(
     private productsService: ProductsService,
@@ -48,5 +49,53 @@ export class ProductsComponent implements OnInit {
       }
     )
   }
+
+  // localS(){
+
+  //   console.log('LcoalS');
+  //   let mi_objeto = {
+  //     hola: 'casfasf'
+  //   }
+
+  //   localStorage.setItem("usuario", JSON.stringify(mi_objeto));
+
+  //   console.log('Obtener de lo insertado');
+
+  //   let obj = JSON.parse(localStorage.getItem("usuario"));
+  //   console.log(obj);
+
+  //   // localStorage.removeItem("titulo");
+
+
+
+
+  //   let producto = {
+  //     idProducto: 2,
+  //     nombre:"Computadora Gamer Xtreme PC",
+  //     precio: 8999,
+  //     cantidad: 3,
+  //     imgUrl: "https://www.cyberpuerta.mx/img/product/M/CP-XTREMEPCGAMING-XTBRR38GBVEGA3-1.png"
+  //   };
+  // }
+
+  addCart(idProductoParam,nombreParam,precioParam,imgUrlParam){
+
+    let obj = JSON.parse(localStorage.getItem(idProductoParam));
+    if(obj){
+      localStorage.removeItem(idProductoParam);
+    }
+
+    let producto = {
+      idProducto: idProductoParam,
+      nombre:nombreParam,
+      precio: precioParam,
+      cantidad: this.cantidadProductos,
+      imgUrl: imgUrlParam
+    };
+
+    localStorage.setItem(idProductoParam, JSON.stringify(producto));
+
+  }
+
 
 }

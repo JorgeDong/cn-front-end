@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
       (authenticated) => {
         this.isAuthenticated = authenticated;
         if (authenticated) {
-          this.router.navigate(['/compare']);
+          this.router.navigate(['/products']);
         } else {
           this.router.navigate(['/']);
         }

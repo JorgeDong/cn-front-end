@@ -27,7 +27,8 @@
                                               
                                               <a href="#"><img src="{{item.imgUrl.S}}" width="302" height="365" alt=""></a>
                                               <div class="product-action">
-                                                  <a title="Wishlist" class="animate-left" href="#"><i class="ion-bag" ></i></a>
+                                                <!-- <button class="danger" (click)="addCart(item.idProducto)" ><i class="ion-bag"></i></button> -->
+                                                  <!-- <a title="Wishlist" class="animate-left" href="#"><i class="ion-bag" ></i></a> -->
                                               </div>
                                           </div>
                                           <div class="product-content">
@@ -43,8 +44,18 @@
                                                   <div class="product-cart">
                                                       <span>{{item.descripcion.S}}</span>
                                                   </div>
+                                                  <br>
                                                   <div class="product-categori">
-                                                      <a href="#"><i class="ion-bag"></i> Añadir al carrito</a>
+                                                      <!-- <button class="danger" (click)="addCart()" ><i class="ion-bag"></i> Añadir al carrito</button> -->
+                                                      <!-- <a class="animate-left" href="#" (click)="addCart()"><i class="ion-bag"></i> Añadir al carrito</a> -->
+                                                      <div class="input-group">
+                                                        <input type="number" class="form-control" min="1" max="100" [(ngModel)]="cantidadProductos">
+                                                        <span class="input-group-btn">
+                                                             <button class="btn btn-default" style="background-color: red;"
+                                                                    (click)="addCart(item.idProducto,item.nombre.S,item.precio,item.imgUrl.S)" >
+                                                                    <i class="ion-bag" style="color: white;"></i></button>
+                                                        </span>
+                                                     </div>
                                                   </div>
                                               </div>
                                           </div>

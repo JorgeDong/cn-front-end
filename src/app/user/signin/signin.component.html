@@ -1,4 +1,4 @@
-<div class="row" *ngIf="didFail">
+<!-- <div class="row" *ngIf="didFail">
   <div class="col-xs-12 col-sm-10 col-md-6 cold-sm-offset-1 col-md-offset-3 text-center">
     <div class="alert alert-danger">Something went wrong, please try again!</div>
   </div>
@@ -34,5 +34,64 @@
     </form>
     <div class="loader" *ngIf="isLoading"></div>
   </div>
+</div> -->
+
+
+
+<div class="breadcrumb-area pt-205 pb-210 bg-img" style="background-image: url(assets/img/bg/breadcrumb.jpg)">
+  <div class="container">
+      <div class="breadcrumb-content">
+          <h2>login</h2>
+          <ul>
+              <li><a href="#">home</a></li>
+              <li> login </li>
+          </ul>
+      </div>
+  </div>
 </div>
 
+<div class="register-area ptb-100">
+  <div class="container">
+    
+    <div class="row" *ngIf="didFail">
+      <div class="col-xs-12 col-sm-10 col-md-6 cold-sm-offset-1 col-md-offset-3 text-center">
+        <div class="alert alert-danger">Something went wrong, please try again!</div>
+      </div>
+    </div>
+
+      <div class="row">
+          <div class="col-md-12 col-12 col-lg-6 col-xl-6 ml-auto mr-auto">
+              <div class="login">
+                  <div class="login-form-container">
+                      <div class="login-form">
+                          <form (ngSubmit)="onSubmit()" #usrForm="ngForm">
+                            <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            ngModel
+                            class="form-control text-center"
+                            placeholder="Username"
+                            required>
+                            <input
+                              type="password"
+                              id="password"
+                              name="password"
+                              ngModel
+                              class="form-control text-center"
+                              placeholder="Password"
+                              required>
+  
+                              <div class="button-box">
+                                  <button class="default-btn floatright" type="submit" [disabled]="usrForm.invalid">Login</button>
+                              </div>
+                          </form>
+                          <div class="loader" *ngIf="isLoading"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- login-area end -->
